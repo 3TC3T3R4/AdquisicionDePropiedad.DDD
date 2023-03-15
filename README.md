@@ -1,0 +1,1 @@
+# co.com.Sofka.SofkaU.AdquisicionDePropiedad
