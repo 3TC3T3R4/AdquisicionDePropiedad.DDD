@@ -1,5 +1,4 @@
-﻿
-using AdquisicionDePropiedad.DDD.Domain.CasosDeUso.Entradas;
+﻿using AdquisicionDePropiedad.DDD.Domain.CasosDeUso.Entradas;
 using AdquisicionDePropiedad.DDD.Domain.ClienteAggregate.Comandos;
 using AdquisicionDePropiedad.DDD.Domain.ClienteAggregate.Entities;
 using AdquisicionDePropiedad.DDD.Domain.ClienteAggregate.Eventos;
@@ -36,23 +35,24 @@ namespace AdquisicionDePropiedad.DDD.Domain.CasosDeUso.CasosDeUso
                     );
 
             cliente.SetDatosPersonales(datosPersonales);
-            List<DomainEvent> listDomain =cliente.getUncommittedChanges();
+            List<DomainEvent> listDomain = cliente.getUncommittedChanges();
             await SaveEvents(listDomain);
 
 
         }
 
-        public async Task AgregarContactoParaCliente(AgregarContactoParaClienteComando comando) {
+        public async Task AgregarContactoParaCliente(AgregarContactoParaClienteComando comando)
+        {
 
             var clienteChange = new ClienteChangeApply();
             var listDomainEvents = await GetEventsByAggregateID(comando.ClienteId);
-
             var clienteId = ClienteId.Of(Guid.Parse(comando.ClienteId));
             var clienteGenerado = clienteChange.CreateAggregate(listDomainEvents, clienteId);
 
             Contacto nuevoContacto = new Contacto(ContactoId.Of(Guid.NewGuid()));
             var email = Email.Crear(
                 comando.Email
+             
             );
 
             nuevoContacto.SetEmail(email);
@@ -64,7 +64,8 @@ namespace AdquisicionDePropiedad.DDD.Domain.CasosDeUso.CasosDeUso
 
         }
 
-        public async Task AgregarSolicitudParaCliente(AgregarSolicitudParaClienteComando comando) {
+        public async Task AgregarSolicitudParaCliente(AgregarSolicitudParaClienteComando comando)
+        {
 
             var clienteChange = new ClienteChangeApply();
             var listDomainEvents = await GetEventsByAggregateID(comando.ClienteId);
@@ -144,4 +145,3 @@ namespace AdquisicionDePropiedad.DDD.Domain.CasosDeUso.CasosDeUso
 
     }
 }
-

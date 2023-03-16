@@ -1,39 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorEstado
 {
-    public record FechaExpedicion
+    public class FechaExpedicion
     {
 
-        public DateTime fechaExpedicion { get; init; }
+        public DateTime Fecha { get; init; }
 
 
-        internal FechaExpedicion(DateTime fechaExpedicion)
+        public FechaExpedicion(DateTime fecha)
         {
 
-            this.fechaExpedicion = fechaExpedicion;
 
+           Fecha = fecha;
 
         }
 
-        public static FechaExpedicion Crear(DateTime fechaExpedicion)
+        public static FechaExpedicion Crear(DateTime fecha)
         {
 
-            validar(fechaExpedicion);
+            validar(fecha);
 
-            return new FechaExpedicion(fechaExpedicion);
+            return new FechaExpedicion(fecha);
 
         }
 
 
-        public static void validar(DateTime fechaExpedicion)
+        public static void validar(DateTime fecha)
         {
 
-            if (fechaExpedicion == null)
+            if (fecha == null)
             {
 
                 throw new ArgumentException("El valor no puede ser nulo");
@@ -41,6 +37,7 @@ namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.Objeto
             }
 
         }
+
 
 
 

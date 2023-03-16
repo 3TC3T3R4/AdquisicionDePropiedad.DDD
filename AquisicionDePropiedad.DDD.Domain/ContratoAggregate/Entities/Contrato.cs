@@ -1,59 +1,72 @@
-﻿using AquisicionDePropiedad.DDD.Domain.AgenteInmobiliarioAggregate.ValueObjects.ObjetoDeValorBienes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdquisicionDePropiedad.DDD.Domain.Comunes;
+using AdquisicionDePropiedad.DDD.Domain.ContratoAggregate.Eventos;
+using AdquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorContrato;
+using AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorContrato;
+using AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorFiador;
+
 
 namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.Entities
 {
-    public class Contrato
+    public class Contrato : AggregateEvent<ContratoId>
     {
 
-        public Guid Id { get; init; }
-        public Guid FiadorId { get; private set; }
-        public Guid EstadoId { get; private set; }
-        public Guid ClienteId { get; private set; }
-        public Guid AgenteInmobilarioId { get; private set; }
-        //public Descripcion Descripcion { get; private set; }
+        public ContratoId ContratoId { get;init; }
+
+        public IdsAgregados IdsAgregados { get; private set; }
+
+        public virtual Fiador Fiador { get; private set; }
+        public virtual Estado Estado { get; private set; }
 
 
-        //public virtual AgenteInmobilario AgenteInmobilario { get; private set; }
-        //public virtual Cliente Cliente { get; private set; }
+        public Contrato(ContratoId contratoID) : base(contratoID)
+        {
+            this.ContratoId = contratoID;
+        }
 
+        
 
-        public Contrato(Guid id) => this.Id = id;
+        public void SetContratoId(ContratoId contratoID)
+        {
+            AppendChange(new ContratoCreado(contratoID.ToString()));
+        }
+        public void SetIdsDeAgregados(IdsAgregados idsAgregados)
+        {
+            AppendChange(new IdsDeAgregadosAgregados(idsAgregados));
+        }
 
-        //public void SetDescripcion(Descripcion descripcion)
-        //{
-
-        //    Descripcion = descripcion;
-
-        //}
-        public void SetFiadorId(Guid fiadorId)
+        public void SetIdsDeAgregadosFinal(IdsAgregados idsAgregados)
+        {
+                    this.IdsAgregados = idsAgregados;
+        }
+        public void SetAgregarFiadorParaContrato(Fiador fiador)
         {
 
-            FiadorId = fiadorId;
+            AppendChange(new FiadorParaContratoAgregado(fiador));
 
         }
-        public void SetEstadoId(Guid estadoId)
+
+        public void SetFiadorAgregado(Fiador fiador)
         {
 
-            EstadoId = estadoId;
+            this.Fiador = fiador;
 
         }
-        public void SetClienteId(Guid clienteId)
+
+        public void SetAgregarEstadoParaContrato(Estado estado)
         {
 
-           ClienteId = clienteId;
+            AppendChange(new EstadoParaContratoAgregado(estado));
 
         }
-        public void SetAgenteInmobilarioId(Guid agenteInmobilarioId)
+        public void SetEstadoAgregado(Estado estado)
         {
 
-            AgenteInmobilarioId = agenteInmobilarioId;
+            this.Estado = estado;
 
         }
+
+
+
 
     }
 }

@@ -1,30 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using AdquisicionDePropiedad.DDD.Domain.Comunes;
 
 namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorFiador
 {
-    public record FiadorId
+    public class FiadorId :  Identity
     {
+        //constructor
+        public FiadorId(Guid id) : base(id) { }
 
-        public Guid value { get; set; }
-
-        internal FiadorId(Guid value_)
+        //crear metodo
+        public static FiadorId Of(Guid id)
         {
-            this.value = value_;
-        }
-        public static FiadorId Crear(Guid value)
-        {
-            return new FiadorId(value);
-        }
-
-        public static implicit operator Guid(FiadorId fiadorId)
-        {
-
-            return fiadorId.value;
-
+            return new FiadorId(id);
         }
 
     }

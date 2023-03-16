@@ -16,10 +16,4 @@
     <ProjectReference Include="..\AquisicionDePropiedad.DDD.Domain\AdquisicionDePropiedad.DDD.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CasosDeUso\AgenteInmobiliario\" />
-    <Folder Include="CasosDeUso\Contrato\" />
-    <Folder Include="CasosDeUso\Cliente\" />
-  </ItemGroup>
-
 </Project>

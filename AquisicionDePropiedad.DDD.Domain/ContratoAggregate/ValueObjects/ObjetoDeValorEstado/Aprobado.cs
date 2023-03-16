@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AquisicionDePropiedad.DDD.Domain.ClienteAggregate.ValueObjects.ObjetosDeValorContacto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorEstado
 {
-    public record Aprobado
+    public class Aprobado
     {
+        public bool AprobadoFinal { get; init; }
 
-        public bool aprobado { get; init; }
 
-
-        internal Aprobado(bool aprobado)
+        public Aprobado(bool aprobado)
         {
 
-            this.aprobado = aprobado;
 
+            AprobadoFinal = aprobado;
 
         }
 
@@ -41,10 +41,6 @@ namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.Objeto
             }
 
         }
-
-
-
-
 
     }
 }

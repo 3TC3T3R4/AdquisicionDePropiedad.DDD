@@ -20,8 +20,11 @@ builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(
 builder.Services.AddScoped(typeof(IStoredEventRepository<>), typeof(StoredEventRepository<>));
 builder.Services.AddScoped<lClienteCasoDeUso, ClienteCasoDeUso>();
 
-builder.Services.AddScoped<lAgenteInmobiliarioCasoDeUso, AgenteInmobiliarioCasoDeUso>();
 builder.Services.AddScoped(typeof(IStoredEventRepository<>), typeof(StoredEventRepository<>));
+builder.Services.AddScoped<lAgenteInmobiliarioCasoDeUso, AgenteInmobiliarioCasoDeUso>();
+
+builder.Services.AddScoped(typeof(IStoredEventRepository<>), typeof(StoredEventRepository<>));
+builder.Services.AddScoped<lContratoCasoDeUso, ContratoCasoDeUso>();
 
 
 var app = builder.Build();

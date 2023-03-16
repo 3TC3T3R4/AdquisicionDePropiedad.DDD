@@ -21,5 +21,20 @@ namespace AdquisicionDePropiedad.DDD.Domain.Genericos
 
         public string EventBody { get; set; }
 
-    }
+        public StoredEvent(int storedId, string storedName, string aggregateId, string eventBody)
+        {
+            StoredId = storedId;
+            StoredName = storedName;
+            AggregateId = aggregateId;
+            EventBody = eventBody;
+        }
+
+        public StoredEvent() { }
+
+
+    
+
+
+
+}
 }

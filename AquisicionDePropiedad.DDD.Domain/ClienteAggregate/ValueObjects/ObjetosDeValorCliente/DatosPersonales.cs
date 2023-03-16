@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AquisicionDePropiedad.DDD.Domain.ClienteAggregate.ValueObjects.ObjetosDeValorCliente
 {
-    public record DatosPersonales
+    public class DatosPersonales
     {
         //variables
 

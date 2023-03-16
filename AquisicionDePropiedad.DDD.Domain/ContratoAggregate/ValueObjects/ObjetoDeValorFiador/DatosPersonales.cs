@@ -1,48 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AquisicionDePropiedad.DDD.Domain.ContratoAggregate.ValueObjects.ObjetoDeValorFiador
 {
-   public record DatosPersonales{
+   public class DatosPersonales{
 
-        public string nombreCompleto { get; init; }
+        public string Nombre { get; init; }
+        public int Telefono { get; init; }
 
-        public string direccion { get; init; }
 
-        internal DatosPersonales(string nombreCompleto, string direccion)
+
+        public DatosPersonales(string nombre, int telefono)
         {
-
-            this.nombreCompleto = nombreCompleto;
-            this.direccion = direccion;
-
+            Nombre = nombre;
+            Telefono = telefono;
         }
 
-        public static DatosPersonales Crear(string nombreCompleto, string direccion)
+        public DatosPersonales() { }
+        //create method
+        public static DatosPersonales Crear(string nombre,int telefono)
         {
-
-            validar(nombreCompleto, direccion);
-
-            return new DatosPersonales(nombreCompleto, direccion);
-
+            Validate(nombre, telefono);
+            return new DatosPersonales(nombre,telefono);
         }
-
-
-        public static void validar(string nombreCompleto, string direccion)
+        //validate method 
+        public static void Validate(string nombre,  int telefono)
         {
-
-            if (nombreCompleto == null || direccion == null)
+            if (nombre.Equals(null))
             {
-
-                throw new ArgumentException("El valor no puede ser nulo");
-
+                throw new ArgumentNullException("Name cannot be null");
             }
-
+            if (telefono.Equals(null))
+            {
+                throw new ArgumentNullException("Last name cannot be null");
+            }
+           
         }
-
-
-    
-}
+    }
 }
