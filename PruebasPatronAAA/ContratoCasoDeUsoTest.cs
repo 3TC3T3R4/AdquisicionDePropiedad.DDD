@@ -71,6 +71,7 @@ namespace PruebasPatronAAA
                 .WithAggregateId("Aggregate1")
                 .WithEventBody("{\"Type\":\"contrato.creado\",\"IdsAgregados\":{\"IdAgente\":\"string\",\"IdCliente\":\"string\"}}")
                 .Build();
+
         private CrearContratoComando GetContratoComando() =>
            new CrearContratoComandoBuilder()
                .ConIdAgente("8asdfasd8f4as5")

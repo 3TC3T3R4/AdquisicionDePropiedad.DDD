@@ -10,8 +10,6 @@ namespace AdquisicionDePropiedad.DDD.Domain.ClienteAggregate.Comandos
     {
 
         public string ClienteId { get; set; }
-
-
         public string Motivo { get; set; }
 
         public AgregarSolicitudParaClienteComando(string clienteId, string motivo)
